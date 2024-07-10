@@ -63,7 +63,7 @@ def one():
     """该函数的目的是下载一个指定视频"""
     try:
         url = input("Please type website >>")
-        if content == "q":
+        if url == "q":
         # 如果用户输入q，返回主函数
             return
         # 因为下载指定视频，所以要获取url
