@@ -72,7 +72,7 @@ def main(url, file):
         # 若有异常，说明没有下载
         if not os.path.isdir(f"{file}\\"):
             os.makedirs(f"{file}\\")
-        save(audio_url, video_url, title, file=f"D:\\b站学习资料\\{file}\\")
+        save(audio_url, video_url, title, file=f"{file}\\")
         merge_videos([f"{file}\\{title}.mp3", 
                       f"{file}\\{title}.mp4"], 
                       f"{file}\\{title}.mp4")
