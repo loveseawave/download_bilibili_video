@@ -7,6 +7,7 @@ from urllib.parse import urljoin # 导入url连接函数
 import sync_download_video # 导入下载函数
 import search # 导入搜索函数
 
+file = "黑丝jk"
 
 async def main():
     """该函数的目的是写一个命令行接口"""
@@ -15,6 +16,7 @@ async def main():
     print('Type "s" start sync download.')
     print('Type "one" start download one video.')
     # print('Type "bvid" start search by bvid(test).')
+    print('Type "f" change the file')
     print('Type "0" exit.')
     while True:
         choose = input("<<")
@@ -26,6 +28,8 @@ async def main():
             one()
         elif choose == "bvid":
             """bvid()"""
+        elif choose == "f":
+            change_file()
         elif choose == "0":
             exit()
 
@@ -43,7 +47,7 @@ async def main():
 
 async def sync_main():
     """"这个函数的目的是调用下载函数，下载指定b站内容"""
-    content = input("Please type search content>>")
+    content = input("Please type search content or url>>")
     if content == "q":
         # 如果用户输入q，返回主函数
         return
@@ -55,7 +59,7 @@ async def sync_main():
             # 如果url并不是完整url
             url = urljoin("https:", url)
             # 那么用urljoin函数将其补充完成
-        sync_download_video.main(url)
+        sync_download_video.main(url, file)
         # 调用下载函数，下载视频
 
 
@@ -67,17 +71,21 @@ def one():
         # 如果用户输入q，返回主函数
             return
         # 因为下载指定视频，所以要获取url
-        sync_download_video.main(url)
+        sync_download_video.main(url, FileExistsError)
         # 直接调用函数
-    except:
-        # 一旦发生异常，返回主函数
-        return
+    except OSError:
+        pass
+    
 
 
 """def bvid():
     page_bvid = BvId(input("Please type bvid >>"))
     sync_download_video.main(page_bvid)"""
 
+
+def change_file():
+    global file
+    file = input("Type the change file <<")
 
 
 if __name__ == "__main__":
