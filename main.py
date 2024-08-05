@@ -7,6 +7,8 @@ from urllib.parse import urljoin # 导入url连接函数
 import sync_download_video # 导入下载函数
 import search # 导入搜索函数
 
+file = "content"
+
 async def main():
     """该函数的目的是写一个命令行接口"""
     print("Welcome to download bilibili video tool!")
